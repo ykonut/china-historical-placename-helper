@@ -6,6 +6,9 @@ on:
       - 'v*'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
@@ -18,23 +21,11 @@ jobs:
             args: '--target aarch64-apple-darwin'
             arch: 'arm64'
           
-          # macOS Intel
-          - platform: 'macos-13'
-            target: 'x86_64-apple-darwin'
-            args: '--target x86_64-apple-darwin'
-            arch: 'x64'
-          
           # Windows x86-64
           - platform: 'windows-latest'
             target: 'x86_64-pc-windows-msvc'
             args: '--target x86_64-pc-windows-msvc'
             arch: 'x64'
-          
-          # Windows ARM64
-          - platform: 'windows-latest'
-            target: 'aarch64-pc-windows-msvc'
-            args: '--target aarch64-pc-windows-msvc'
-            arch: 'arm64'
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -71,15 +62,15 @@ jobs:
           releaseBody: |
             ## 下载
 
-            请根据您的操作系统和芯片架构选择合适的安装包：
+            请根据您的操作系统选择合适的安装包：
 
             ### macOS
             - **Apple Silicon (M1/M2/M3 等)**: `*_aarch64.dmg`
-            - **Intel 芯片**: `*_x64.dmg`
 
             ### Windows
-            - **x86-64 (64位)**: `*_x64-setup.exe` 或 `*_x64.msi`
-            - **ARM64**: `*_arm64-setup.exe` 或 `*_arm64.msi`
+            - **x64 (64位)**: `*_x64-setup.exe`
+
+            **注意**: macOS 版本仅支持 Apple Silicon。Intel Mac 用户可以通过 Rosetta 2 运行。
 
             ## 更新内容
 

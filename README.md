@@ -29,8 +29,8 @@
 
 前往 [Releases](../../releases) 页面下载适合您操作系统的安装包：
 
-- **Windows**: `.exe` 安装包
-- **macOS**: `.dmg` 安装包
+- **Windows (x64)**: `.exe` 安装包
+- **macOS (Apple Silicon)**: `.dmg` 安装包
 
 ### 使用方法
 
